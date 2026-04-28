@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('remoji-version').textContent = 'v' + chrome.runtime.getManifest().version;
     initNavigation();
     loadAllData();
     initSettings();
