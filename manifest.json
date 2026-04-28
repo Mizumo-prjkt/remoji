@@ -1,0 +1,57 @@
+{
+    "name": "Remoji Browser",
+    "version": "1.0.0",
+    "description": "A simple extension that summons emoji picker, with a fuzzy search",
+    "manifest_version": 3,
+    "author": "MizProject",
+    "icons": {
+        "128": "icons/extension-icon128x128.png",
+        "48": "icons/extension-icon48x48.png",
+        "16": "icons/extension-icon16x16.png",
+        "32": "icons/extension-icon32x32.png"
+    },
+    "action": {
+        "default_icon": "icons/extension-icon32x32.png",
+        "default_title": "Remoji Browser"
+    },
+    "permissions": [
+        "activeTab",
+        "tabs",
+        "scripting",
+        "storage"
+    ],
+    "host_permissions": [
+        "<all_urls>"
+    ],
+    "options_page": "settings/settings.html",
+    "background": {
+        "service_worker": "services/background.js"
+    },
+    "commands": {
+        "open-picker": {
+            "suggested_key": {
+                "default": "Ctrl+Period",
+                "mac": "Command+Period"
+            },
+            "description": "Open Emoji Picker"
+        }
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "<all_urls>"
+            ],
+            "js": [
+                "services/data.js",
+                "services/learning.js",
+                "services/emoji-data.js",
+                "services/achievements.js",
+                "services/fuzzy.js",
+                "services/content.js"
+            ],
+            "css": [
+                "styling/style.css"
+            ]
+        }
+    ]
+}
