@@ -137,13 +137,20 @@ function createPanel() {
             // If user clicks back into their text field, update saved cursor position
             const target = window.lastActiveElement;
             if (target && (target === e.target || target.contains(e.target))) {
-                // Let the click happen naturally, then capture new position
+                // Let the click happen naturally, then capture new cursor position
                 setTimeout(() => {
                     if (target.setSelectionRange) {
                         window.lastSelectionStart = target.selectionStart;
                         window.lastSelectionEnd = target.selectionEnd;
                     }
-                }, 0);
+                    // Always save the Selection Range (works for all contenteditable)
+                    const sel = window.getSelection();
+                    if (sel && sel.rangeCount > 0) {
+                        window.lastSavedRange = sel.getRangeAt(0).cloneRange();
+                    }
+                    // Refocus the search input so the user can keep searching
+                    searchInput.focus();
+                }, 10);
                 return; // Don't close the panel
             }
             togglePanel();
@@ -442,11 +449,32 @@ async function insertSymbol(symbol) {
             console.error("Direct insertion failed:", e);
         }
     } else {
-        // For contenteditable elements (e.g. Messenger, Discord), use execCommand
+        // For contenteditable elements (YouTube, Twitter, Discord, Messenger, etc.)
         try {
+            // Restore saved selection range before inserting
+            if (window.lastSavedRange) {
+                // Find the actual contenteditable element from the saved range
+                let editableEl = window.lastSavedRange.startContainer;
+                if (editableEl.nodeType === Node.TEXT_NODE) editableEl = editableEl.parentElement;
+                while (editableEl && !editableEl.isContentEditable) {
+                    editableEl = editableEl.parentElement;
+                }
+                if (editableEl) editableEl.focus();
+
+                const sel = window.getSelection();
+                sel.removeAllRanges();
+                sel.addRange(window.lastSavedRange);
+            }
+
             document.execCommand('insertText', false, symbol);
+
+            // Update saved range to the new cursor position
+            const sel = window.getSelection();
+            if (sel && sel.rangeCount > 0) {
+                window.lastSavedRange = sel.getRangeAt(0).cloneRange();
+            }
         } catch (e) {
-            console.warn("execCommand insertion failed:", e);
+            console.warn("Contenteditable insertion failed:", e);
         }
     }
 
@@ -464,10 +492,20 @@ async function togglePanel() {
         const activeEl = getDeepActiveElement();
         window.lastActiveElement = activeEl;
         
-        // Capture selection if it's an input/textarea
+        // Capture selection for input/textarea
         if (activeEl && (activeEl.tagName === 'INPUT' || activeEl.tagName === 'TEXTAREA')) {
             window.lastSelectionStart = activeEl.selectionStart;
             window.lastSelectionEnd = activeEl.selectionEnd;
+        }
+
+        // Always save the browser Selection Range as a fallback.
+        // This catches ALL contenteditable scenarios (YouTube, Twitter, Discord, etc.)
+        // even when the activeElement itself doesn't report isContentEditable.
+        const sel = window.getSelection();
+        if (sel && sel.rangeCount > 0) {
+            window.lastSavedRange = sel.getRangeAt(0).cloneRange();
+        } else {
+            window.lastSavedRange = null;
         }
         
         // Handle themes and achievements
