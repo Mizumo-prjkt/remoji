@@ -23,7 +23,7 @@ However, this data is only stored **locally** and is **NOT shared with anyone**.
 
 You can also check the source code to verify this.
 
-- The files regarding the "AI" features: `services/emoji-learner.js`, `services/fuzzy.js`, `services/context-aware.js`, `content.js`, `background.js`
+- The files regarding the "AI" features: `services/emoji-learner.js`, `services/fuzzy.js`, `services/context-aware.js`
 
 The AI Used on the Context-Aware features is not exactly like the LLMs you know today, it is a lightweight model that is hard-coded in the extension and does not have any connection to any external servers. It only checks for keyword patterns and emoji usage, and nothing else. To be exact, it only checks for patterns that are related to your interactions with the extension itself. No Gemini nor Claude is inserted in the codebase.
 
