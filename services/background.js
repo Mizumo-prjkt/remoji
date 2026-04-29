@@ -10,9 +10,29 @@ chrome.action.onClicked.addListener((tab) => {
 
 function isRestrictedUrl(url) {
     if (!url) return true;
-    return /^(chrome|chrome-extension|chrome-search|edge|about|brave|opera|vivaldi):/i.test(url)
-        || url.startsWith('https://chrome.google.com/webstore')
-        || url.startsWith('https://chromewebstore.google.com');
+
+    // Check restricted protocol schemes
+    if (/^(chrome|chrome-extension|chrome-search|edge|about|brave|opera|vivaldi):/i.test(url)) {
+        return true;
+    }
+
+    try {
+        // Securely parse the URL
+        const parsedUrl = new URL(url);
+        const host = parsedUrl.hostname;
+
+        // Exact whitelist of restricted extension store hosts
+        const restrictedHosts = [
+            'chrome.google.com',
+            'chromewebstore.google.com',
+            'microsoftedge.microsoft.com'
+        ];
+
+        return restrictedHosts.includes(host);
+    } catch (e) {
+        // If URL parsing fails, err on the side of caution
+        return true;
+    }
 }
 
 async function togglePicker() {
