@@ -346,6 +346,7 @@ var EMOJI_CATEGORIES = [
       "🌼": ["blossom", "flower", "nature"],
       "🌾": ["ear_of_rice", "plant", "nature"],
       "🌿": ["herb", "plant", "nature"],
+      "🥀": ["wilted_flower", "flower", "nature", "sad", "dying rose", "dying flower"],
       "🍀": ["four_leaf_clover", "plant", "nature", "luck"],
       "🍁": ["maple_leaf", "plant", "nature", "fall"],
       "🍂": ["fallen_leaf", "plant", "nature", "fall"],

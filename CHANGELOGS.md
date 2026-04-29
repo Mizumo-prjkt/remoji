@@ -1,3 +1,9 @@
+v1.0.3
+
+- Features:
+  - Addded wilted flower, and also added 3 slang keywords: son, wallahi, sonion
+
+
 v1.0.2
 
 - Fixes:
