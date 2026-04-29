@@ -23,14 +23,19 @@ However, this data is only stored **locally** and is **NOT shared with anyone**.
 
 You can also check the source code to verify this.
 
-- The files regarding the "AI" features: `services/emoji-learner.js`, `services/fuzzy.js`, `services/context-aware.js`
+- The files regarding the "AI" features: `services/learning.js`, `services/fuzzy.js`
 
 The AI Used on the Context-Aware features is not exactly like the LLMs you know today, it is a lightweight model that is hard-coded in the extension and does not have any connection to any external servers. It only checks for keyword patterns and emoji usage, and nothing else. To be exact, it only checks for patterns that are related to your interactions with the extension itself. No Gemini nor Claude is inserted in the codebase.
 
 ### ⚠️ Data Collection
 
-The extension collects the following data:
+The extension collects the following data and stores it locally in the browser.:
 1. Your emoji usage patterns
 2. Your website visits
 3. Your subreddit visits
 4. Your search queries
+
+What it can't do:
+
+1. Submit to a server. Check source code
+2. Harvest secret info like passwords, credit card numbers, etc.
