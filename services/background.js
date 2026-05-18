@@ -13,6 +13,11 @@ chrome.action.onClicked.addListener((tab) => {
 function isRestrictedUrl(url) {
     if (!url) return true;
 
+    // Allow our own extension pages
+    if (url.startsWith(chrome.runtime.getURL(''))) {
+        return false;
+    }
+
     // Check restricted protocol schemes
     if (/^(chrome|chrome-extension|chrome-search|edge|about|brave|opera|vivaldi):/i.test(url)) {
         return true;

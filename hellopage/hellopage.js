@@ -50,4 +50,16 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
     });
+
+    // Listen for Ctrl+Period (or Cmd+Period on Mac) to toggle the picker natively on this page
+    document.addEventListener('keydown', (e) => {
+        const isPeriod = e.key === '.';
+        const isModifier = isMac ? e.metaKey : e.ctrlKey;
+        if (isModifier && isPeriod) {
+            e.preventDefault();
+            if (typeof togglePanel === 'function') {
+                togglePanel();
+            }
+        }
+    });
 });
