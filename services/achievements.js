@@ -59,7 +59,7 @@ window.EmojiAchievements = {
 
         // 2. Check General Sites
         for (const [domain, theme] of Object.entries(SPECIAL_SITES)) {
-            if (hostname.includes(domain)) {
+            if (hostname === domain || hostname.endsWith('.' + domain)) {
                 return { theme: theme, id: `site_${theme}` };
             }
         }

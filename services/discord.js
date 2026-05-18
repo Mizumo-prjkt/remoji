@@ -3,7 +3,8 @@
 window.DiscordEmojiHelper = {
     // Check if the current page is Discord
     isDiscord() {
-        return window.location.hostname.includes('discord.com');
+        const host = window.location.hostname;
+        return host === 'discord.com' || host.endsWith('.discord.com');
     },
 
     // Look up the primary shortcode name for a raw emoji character

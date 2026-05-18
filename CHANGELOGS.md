@@ -1,3 +1,9 @@
+v1.0.5
+
+- Fixes:
+  - Fixed Discord domain check (added subdomain support and removed strict domain checking)
+  - Fixed Achievement system domain check (added subdomain support and removed strict domain checking)
+
 v1.0.4
 
 - Features:

@@ -1,6 +1,6 @@
 {
     "name": "Remoji Browser",
-    "version": "1.0.4",
+    "version": "1.0.5",
     "description": "A simple extension that summons emoji picker, with a fuzzy search",
     "manifest_version": 3,
     "author": "Mizumo-prjkt",
