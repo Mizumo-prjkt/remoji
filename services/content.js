@@ -390,6 +390,45 @@ function getDeepActiveElement() {
     return el;
 }
 
+function isSensitiveElement(el) {
+    if (!el) return false;
+
+    // Check standard password inputs
+    if (el.tagName === 'INPUT' && el.type === 'password') {
+        return true;
+    }
+
+    // Check autocomplete attributes for sensitive classifications
+    const autocomplete = (el.getAttribute('autocomplete') || '').toLowerCase();
+    const sensitiveAutocompletes = [
+        'cc-number', 'cc-csc', 'cc-exp', 'cc-exp-month', 'cc-exp-year',
+        'cc-type', 'one-time-code', 'username', 'current-password', 'new-password'
+    ];
+    if (sensitiveAutocompletes.includes(autocomplete)) {
+        return true;
+    }
+
+    // Check common sensitive terms in element IDs, names, classes, or placeholders
+    const id = (el.id || '').toLowerCase();
+    const name = (el.name || '').toLowerCase();
+    const className = (el.className || '').toLowerCase();
+    const placeholder = (el.placeholder || '').toLowerCase();
+
+    const sensitivePatterns = [
+        'password', 'passcode', 'pincode', 'cvc', 'cvv', 'cardnumber', 
+        'card-number', 'creditcard', 'credit-card', 'bankaccount', 'bank-account',
+        'routingnumber', 'routing-number', 'ssn', 'socialsecurity'
+    ];
+
+    for (const pattern of sensitivePatterns) {
+        if (id.includes(pattern) || name.includes(pattern) || className.includes(pattern) || placeholder.includes(pattern)) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
 function showAchievementToast(ach) {
     let toast = document.getElementById('remoji-achievement-toast');
     if (!toast) {
@@ -520,6 +559,13 @@ async function togglePanel() {
 
     if (!isVisible) {
         const activeEl = getDeepActiveElement();
+        
+        // Prevent opening if the focused field is sensitive (passwords, credit cards, banking forms, etc.)
+        if (activeEl && isSensitiveElement(activeEl)) {
+            console.warn("Remoji: Picker launch blocked on a sensitive input field for privacy and security.");
+            return;
+        }
+
         window.lastActiveElement = activeEl;
         
         // Capture selection for input/textarea

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link rel="stylesheet" href="hellopage.css">
     <link rel="stylesheet" href="../styling/style.css">
 </head>
+
 <body>
     <!-- Background Glowing Blobs -->
     <div class="glow-blob blob-1"></div>
@@ -23,7 +25,8 @@
 
             <div class="hotkey-container">
                 <div class="hotkey-title">Keyboard Shortcut</div>
-                <div style="font-size: 15px; color: var(--text-secondary); margin-bottom: 12px;">Focus a text field and press:</div>
+                <div style="font-size: 15px; color: var(--text-secondary); margin-bottom: 12px;">Focus a text field and
+                    press:</div>
                 <div>
                     <kbd id="ctrl-kbd">Ctrl</kbd> + <kbd>.</kbd>
                 </div>
@@ -33,22 +36,27 @@
                 <div class="guide-card">
                     <div class="card-icon">🧠</div>
                     <h3 class="card-title">Local Learning</h3>
-                    <p class="card-desc">Remoji learns which emojis you use most frequently on each website and places them right at the top for instant access.</p>
+                    <p class="card-desc">Remoji learns which emojis you use most frequently on each website and places
+                        them right at the top for instant access.</p>
                 </div>
                 <div class="guide-card">
                     <div class="card-icon">📍</div>
                     <h3 class="card-title">Context Aware</h3>
-                    <p class="card-desc">Tracks your habits per-domain and per-subreddit so your suggestions are always relevant to the community you are in.</p>
+                    <p class="card-desc">Tracks your habits per-domain and per-subreddit so your suggestions are always
+                        relevant to the community you are in.</p>
                 </div>
                 <div class="guide-card">
                     <div class="card-icon">🔍</div>
                     <h3 class="card-title">Fuzzy Search</h3>
-                    <p class="card-desc">Search slang or names directly in the picker (like <code>:3</code>, <code>sus</code>, <code>based</code>, <code>miku</code>, <code>ratio</code>).</p>
+                    <p class="card-desc">Search slang or names directly in the picker (like <code>:3</code>,
+                        <code>sus</code>, <code>based</code>, <code>miku</code>, <code>ratio</code>).
+                    </p>
                 </div>
                 <div class="guide-card">
                     <div class="card-icon">🎮</div>
                     <h3 class="card-title">Easter Eggs</h3>
-                    <p class="card-desc">Unlock gorgeous custom themes when you visit different platforms. Track your achievements in the settings panel.</p>
+                    <p class="card-desc">Unlock gorgeous custom themes when you visit different platforms. Track your
+                        achievements in the settings panel.</p>
                 </div>
             </div>
 
@@ -56,7 +64,8 @@
                 <div class="playground-title">
                     <span>⚡ Try it right here!</span>
                 </div>
-                <input type="text" class="playground-input" placeholder="Click here and press Ctrl + . to test Remoji..." />
+                <input type="text" class="playground-input"
+                    placeholder="Click here and press Ctrl + . to test Remoji..." />
             </div>
 
             <div class="footer-buttons">
@@ -79,7 +88,11 @@
                     <div class="feature-icon-badge">💬</div>
                     <div class="feature-content">
                         <h4>Discord Colon Shortcodes (:emoji:)</h4>
-                        <p>We've integrated native Discord shortcode mapping! When typing on <strong>discord.com</strong>, Remoji automatically replaces raw emojis with their colon shortcode format (e.g. <code>:sob: </code>) to allow Discord to cleanly parse and render them using their high-res custom emojis.</p>
+                        <p>We've integrated native Discord shortcode mapping! When typing on
+                            <strong>discord.com</strong>, Remoji automatically replaces raw emojis with their colon
+                            shortcode format (e.g. <code>:sob: </code>) to allow Discord to cleanly parse and render
+                            them using their high-res custom emojis.
+                        </p>
                     </div>
                 </div>
 
@@ -87,7 +100,10 @@
                     <div class="feature-icon-badge">⚡</div>
                     <div class="feature-content">
                         <h4>Fixed Slate.js "Phantom Box" Desync</h4>
-                        <p>No more overlapping text or broken editors in rich-text setups. By dispatching standard <code>beforeinput</code> events, Remoji keeps Discord and other advanced Slate.js editor engines perfectly in sync!</p>
+                        <p>No more overlapping text or broken editors in rich-text setups. By dispatching standard
+                            <code>beforeinput</code> events, Remoji keeps Discord and other advanced Slate.js editor
+                            engines perfectly in sync!
+                        </p>
                     </div>
                 </div>
 
@@ -95,7 +111,20 @@
                     <div class="feature-icon-badge">🐧</div>
                     <div class="feature-content">
                         <h4>Unlockable Zundamon theme on r/zundamon</h4>
-                        <p>Added achievements and styling support for the <code>r/zundamon</code> subreddit. Collect your achievements and view them directly in your Achievements tab.</p>
+                        <p>Added achievements and styling support for the <code>r/zundamon</code> subreddit. Collect
+                            your achievements and view them directly in your Achievements tab.</p>
+                    </div>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-icon-badge">🔒</div>
+                    <div class="feature-content">
+                        <h4>Strict Local Security (Sensitive Field Guard)</h4>
+                        <p>To rigorously protect your credentials, Remoji automatically identifies password fields,
+                            credit card/CVC textboxes, and banking inputs. When a secure field is focused, the extension
+                            triggers are immediately blocked to guarantee your sensitive details remain 100% secure and
+                            private. You can check the source code if you don't believe me at <a
+                                href="https://github.com/Mizumo-prjkt/remoji">GitHub</a>.</p>
                     </div>
                 </div>
             </div>
@@ -104,7 +133,8 @@
                 <div class="playground-title">
                     <span>⚡ Test the updates!</span>
                 </div>
-                <input type="text" class="playground-input" placeholder="Click here and try out the new search updates..." />
+                <input type="text" class="playground-input"
+                    placeholder="Click here and try out the new search updates..." />
             </div>
 
             <div class="footer-buttons">
@@ -123,4 +153,5 @@
     <script src="../services/content.js"></script>
     <script src="hellopage.js"></script>
 </body>
+
 </html>

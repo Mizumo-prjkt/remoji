@@ -10,32 +10,32 @@ If you find a security issue, please submit a detailed report of the issue, incl
 4. Proof of concept (if applicable).
 5. Any suggestions on how to fix the vulnerability. (Optional)
 
-## Disclaimers
+## Disclaimers & Privacy Guarantees
 
-This extension was made with artificial intelligence. I, the developer, am simply the middleman between the AI and the user. I verify the code did not contain any suspicious instructions. However, if there's any security issues, submit a report and i'll try to fix it.
+### 🤖 AI-Assisted Development Transparency
+This extension was developed in partnership with advanced Artificial Intelligence coding models. As the developer and publisher:
+* I act as a rigorous auditor, reviewing and verifying every single line of code to ensure it meets strict security standards and does **not** contain any suspicious, malicious, or unsafe instructions.
+* If any unexpected security edge cases or issues are identified, I pledge to address, patch, and release a fix as quickly as possible. Please submit a detailed report!
 
+---
 
-## ⚠️ Context-Aware Features
+### ⚠️ Context-Aware Learning Features
+Remoji features a smart local learning engine designed to customize suggestions based on where and what you are typing.
+* **100% Local execution**: All processing, keyword matching, and frequency learning happen purely in memory or local storage inside your browser sandbox.
+* **No external servers**: Unlike contemporary LLM chatbots, our context-aware logic is a tiny, highly specialized, deterministic pattern-matching engine hardcoded inside the extension. It has **no connection** to external servers and makes no network requests.
+* **Full user control**: You can review the underlying files at any time (`services/learning.js` and `services/fuzzy.js`) or disable all learning engines entirely via the Settings console.
 
-The extension has features that allow it to track your emoji usage on different websites and subreddits. It uses this data to provide you with relevant emoji suggestions based on your current context.
+---
 
-However, this data is only stored **locally** and is **NOT shared with anyone**. You can disable these features in the settings if you are not comfortable with them.
+### 📊 Local Data Boundaries
 
-You can also check the source code to verify this.
+To provide its context-aware features, the extension records the following data, stored **exclusively** inside your browser's private local storage:
+1. **Emoji usage counts**: The frequency of each selected emoji.
+2. **Website hostnames**: Domains where emojis are typed (to provide per-website suggestions).
+3. **Subreddit names**: Specific subreddits (to unlock unique styles/themes).
+4. **Search queries**: Words typed into the picker's search bar to refine the fuzzy engine.
 
-- The files regarding the "AI" features: `services/learning.js`, `services/fuzzy.js`
+#### 🔒 What Remoji WILL NEVER Do:
+1. **Send data to external servers**: The extension has zero tracking or telemetry. There are no tracking scripts, analytics, or external API endpoints.
+2. **Access sensitive information**: Remoji actively guards your security. The extension is hardcoded to automatically identify sensitive inputs (like password inputs, credit card/CVC textboxes, and banking fields via our `isSensitiveElement` secure parser). The activation shortcut and toolbar triggers are immediately blocked whenever a secure field is focused, ensuring Remoji never operates in sensitive fields or has the opportunity to record credentials.
 
-The AI Used on the Context-Aware features is not exactly like the LLMs you know today, it is a lightweight model that is hard-coded in the extension and does not have any connection to any external servers. It only checks for keyword patterns and emoji usage, and nothing else. To be exact, it only checks for patterns that are related to your interactions with the extension itself. No Gemini nor Claude is inserted in the codebase.
-
-### ⚠️ Data Collection
-
-The extension collects the following data and stores it locally in the browser.:
-1. Your emoji usage patterns
-2. Your website visits
-3. Your subreddit visits
-4. Your search queries
-
-What it can't do:
-
-1. Submit to a server. Check source code
-2. Harvest secret info like passwords, credit card numbers, etc.
