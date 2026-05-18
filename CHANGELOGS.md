@@ -1,3 +1,10 @@
+v1.0.4
+
+- Features:
+  - Added Discord-native emoji shortcode support (replaces raw emojis with `:`-wrapped shortcodes on discord.com). (It is still buggy, but do report at the Issues Tab)
+- Fixes:
+  - Fixed the Discord "phantom box" text editor bug by dispatching standard input events to sync the Slate.js editor state.
+
 v1.0.3
 
 - Features:

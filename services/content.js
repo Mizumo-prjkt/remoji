@@ -428,14 +428,20 @@ async function insertSymbol(symbol) {
     const start = window.lastSelectionStart || 0;
     const end = window.lastSelectionEnd || 0;
 
+    // Convert raw emoji to Discord's colon shortcode format (e.g. :sob: ) if on Discord
+    let textToInsert = symbol;
+    if (typeof window.DiscordEmojiHelper !== 'undefined') {
+        textToInsert = window.DiscordEmojiHelper.getDiscordSymbol(symbol);
+    }
+
     // For standard inputs/textareas, use direct value manipulation (most reliable)
     if (activeEl.value !== undefined && activeEl.setSelectionRange) {
         try {
             activeEl.setSelectionRange(start, end);
             const val = activeEl.value;
-            activeEl.value = val.slice(0, start) + symbol + val.slice(end);
+            activeEl.value = val.slice(0, start) + textToInsert + val.slice(end);
 
-            const newPos = start + symbol.length;
+            const newPos = start + textToInsert.length;
             activeEl.setSelectionRange(newPos, newPos);
 
             // Trigger events so frameworks know the value changed
@@ -466,7 +472,31 @@ async function insertSymbol(symbol) {
                 sel.addRange(window.lastSavedRange);
             }
 
-            document.execCommand('insertText', false, symbol);
+            // Dispatch 'beforeinput' event so rich text editors (like Slate.js on Discord)
+            // can intercept it and update their internal state to avoid the phantom box.
+            const targetEl = window.getSelection().anchorNode;
+            let container = targetEl;
+            if (container && container.nodeType === Node.TEXT_NODE) {
+                container = container.parentElement;
+            }
+
+            let handledByEvent = false;
+            if (container) {
+                const beforeInputEvent = new InputEvent('beforeinput', {
+                    bubbles: true,
+                    cancelable: true,
+                    data: textToInsert,
+                    inputType: 'insertText'
+                });
+                const notCancelled = container.dispatchEvent(beforeInputEvent);
+                if (!notCancelled) {
+                    handledByEvent = true;
+                }
+            }
+
+            if (!handledByEvent) {
+                document.execCommand('insertText', false, textToInsert);
+            }
 
             // Update saved range to the new cursor position
             const sel = window.getSelection();

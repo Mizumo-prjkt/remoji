@@ -1,3 +1,5 @@
+importScripts('../hellopage/whatsnew.js');
+
 chrome.commands.onCommand.addListener((command) => {
     if (command === "open-picker") {
         togglePicker();
