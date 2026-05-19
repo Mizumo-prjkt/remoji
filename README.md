@@ -2,7 +2,7 @@
 
 Available in:
 
-Microsoft Edge Addons (SOON)
+[Get it on Microsoft Edge Extensions](https://microsoftedge.microsoft.com/addons/detail/mippgmlgjhiodippepncekpnadjilfmm)
 
 > [!IMPORTANT]
 > This extension was made with artificial intelligence. I, the developer, am simply the middleman between the AI and the user. I verify the code did not contain any suspicious instructions. However, if there's any security issues, submit a report and i'll try to fix it.
